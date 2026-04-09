@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Time Remaining</title>
+</head>
+
+<body>
+
+<h1>Time Remaining</h1>
+<div id="remtime"></div>
+
+<p>Normalized time:</p>
+
+
+<script type="text/python">
+from browser import document
+from datetime import datetime
+calendar = [1,0,0,1,1,0.9,1,0,0,0,1,1,0.9,1,1,0,0,1,0.8,0.9,0,0,0,0,1,1,0.9,1,1,0,0,1,1,0.9,1,1,0,0,1,1,0.9,1,1,0,0,1,0.8,0.9,1,1,0,0,1,1,0.9,1,1,0,0,1,1,0.9,1,1,0,0,1,1,0.9,1,1]
+def time_left_tuple(target):
+    now = datetime.now()
+    diff = target - now
+    total_seconds = int(diff.total_seconds())
+    days = total_seconds // 86400
+    remainder = total_seconds % 86400
+    hours = remainder // 3600
+    remainder %= 3600
+    minutes = remainder // 60
+    seconds = remainder % 60
+    return (days, hours, minutes, seconds)
+
+def normalize(days, hours, minutes, seconds):
+    total_seconds = days*86400+hours*3600+minutes*60+seconds
+    days = total_seconds // 86400
+    remainder = total_seconds % 86400
+    hours = remainder // 3600
+    remainder %= 3600
+    minutes = remainder // 60
+    seconds = remainder % 60
+    return(days,hours,minutes,seconds)
+
+now = datetime.now()
+end = datetime(2026, 6, 19, 15, 45, 0)
+start = datetime(2026, 4, 9, 0, 0, 0)
+diff = now - start
+total_seconds = int(diff.total_seconds())
+sliced = total_seconds // 86400
+calendar = calendar[sliced:]
+school_days = 0
+school_hours = 0
+school_minutes = time_left_tuple(end)[2]
+school_seconds = time_left_tuple(end)[3]
+
+for values in calendar:
+    if values == 1:
+        school_days += 1
+    elif values == 0:
+        pass
+    else:
+        school_days += 1
+        school_hours -= 1
+        school_minutes -= 15
+        
+
+time_remaining = time_left_tuple(end)
+school_time = normalize(school_days,school_hours,school_minutes,school_seconds)
+hours_left = school_days*24+school_hours+school_minutes/60+school_seconds/3600
+minutes_left = school_days*1440+school_hours*60+school_minutes+school_seconds/60
+seconds_left = school_days*86400+school_hours*3600+school_minutes*60+school_seconds
+
+document["remtime"].text = "time_remaining"
+  
+</script>
+
+</body>
+</html>
