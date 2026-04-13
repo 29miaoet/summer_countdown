@@ -146,6 +146,19 @@ def calcu():
         minutes = remainder // 60
         seconds = remainder % 60
         return(days,hours,minutes,seconds)
+     
+    def calc_hr_left():
+        hrs = 0
+        for values in calendar:
+            if values == 1:
+                hrs += 7.25
+            elif values == 0:
+                pass
+            else:
+                hrs += 6
+        hrs =hrs +school_hours+school_minutes/60+school_seconds/3600
+        return hrs
+        
 
     now = datetime.now()
     end = datetime(2026, 6, 19, 15, 45, 0)
@@ -240,9 +253,9 @@ def calcu():
 
     time_rem = time_left_tuple(end)
     school_time = normalize(school_days,school_hours,school_minutes,school_seconds)
-    hours_left = school_days*24+school_hours+school_minutes/60+school_seconds/3600
-    minutes_left = school_days*1440+school_hours*60+school_minutes+school_seconds/60
-    seconds_left = school_days*86400+school_hours*3600+school_minutes*60+school_seconds
+    hours_left = calc_hr_left()
+    minutes_left = calc_hr_left()*60
+    seconds_left = calc_hr_left()*3600
     
     document["remtimed"].text = school_time[0]
     document["remtimeh"].text = school_time[1]
@@ -262,8 +275,6 @@ def calcu():
     
 
 timer.set_interval(calcu, 500)
-
-
   
 </script>
 </div>
