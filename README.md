@@ -67,6 +67,6 @@ Description:
 This is a beginner level calculator, designed to mimic the basic calculator 
 function on windows, it has a simple GUI interface \(the tkinter module\); and has 
 been tested on Windows and Linux. Tkinter works best with Ubuntu Gnome, however. The 
-program will still run smoothly cross-platform. Regardless of the OS display.
+program will still run smoothly cross-platform regardless of the OS display.
 
 ---
