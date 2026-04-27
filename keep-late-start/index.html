@@ -7,258 +7,9 @@
 <meta name="google-site-verification" content="FcUvDg5NAGm-37-VWUkVFUlgpD059Zy3fV95srO2S3c" />
 <meta name="msvalidate.01" content="16CD2C49295008DDE8641FAAF72CC16A" />
 <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<link rel="stylesheet" href="styles.css">
 <title>Save Late Start Wednesdays</title>
-  
 
-<style>
-/* Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.6;
-  color: #333;
-  background: #f9fbfd;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Navbar */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #1f3a5f;
-  color: white;
-  padding: 15px 30px;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-}
-
-.navbar h2 {
-  font-weight: 700;
-  font-size: 1.5rem;
-}
-
-.navbar a {
-  color: white;
-  margin-left: 24px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 1rem;
-  transition: color 0.3s ease;
-}
-
-.navbar a:hover,
-.navbar a:focus {
-  text-decoration: underline;
-  color: #cbd5e1;
-  outline: none;
-}
-
-/* Hero */
-/* Removed hero section since none in your final markup */
-
-/* Sections */
-.section {
-  padding: 70px 10%;
-  display: flex;
-  align-items: center;
-  gap: 40px;
-  flex-wrap: wrap;
-}
-
-.section .text {
-  flex: 1 1 300px;
-  min-width: 280px;
-}
-
-.section .text h2 {
-  font-size: 2rem;
-  margin-bottom: 16px;
-  color: #1f3a5f;
-  font-weight: 700;
-}
-
-.section .text p {
-  margin-bottom: 1.2rem;
-  font-size: 1.1rem;
-  line-height: 1.5;
-  color: #444;
-}
-
-.section .image {
-  flex: 1 1 300px;
-  min-width: 280px;
-  display: flex;
-  justify-content: center;
-}
-
-.section .image img {
-  width: 100%;
-  max-width: 520px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  object-fit: cover;
-}
-
-/* CTA */
-.cta {
-  background: #1f3a5f;
-  color: white;
-  text-align: center;
-  padding: 70px 20px;
-}
-
-.cta h2 {
-  font-size: 2.25rem;
-  margin-bottom: 16px;
-  font-weight: 700;
-}
-
-.cta p {
-  font-size: 1.25rem;
-  margin-bottom: 30px;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  line-height: 1.4;
-}
-
-/* Buttons */
-.btn {
-  display: inline-block;
-  margin: 0 12px 12px 12px;
-  background: #3498db;
-  color: white;
-  padding: 14px 28px;
-  text-decoration: none;
-  border-radius: 6px;
-  font-weight: 600;
-  font-size: 1.1rem;
-  box-shadow: 0 3px 6px rgba(52,152,219,0.4);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  user-select: none;
-}
-
-.btn:hover,
-.btn:focus {
-  background: #217dbb;
-  box-shadow: 0 6px 12px rgba(33,125,187,0.6);
-  outline: none;
-}
-
-/* Community Contributions Section */
-h2.community-header {
-  margin: 60px 10% 10px;
-  font-size: 2rem;
-  color: #1f3a5f;
-  font-weight: 700;
-}
-
-.community-text {
-  margin: 0 10% 30px;
-  font-size: 1.1rem;
-  color: #444;
-  max-width: 800px;
-}
-
-.community-link {
-  display: inline-block;
-  margin: 0 10% 60px;
-  font-weight: 600;
-  font-size: 1.1rem;
-  color: #3498db;
-  text-decoration: none;
-  user-select: text;
-  transition: color 0.3s ease;
-}
-
-.community-link:hover,
-.community-link:focus {
-  color: #217dbb;
-  text-decoration: underline;
-  outline: none;
-}
-
-/* Footer */
-footer {
-  text-align: center;
-  padding: 20px 10%;
-  background: #1f3a5f;
-  color: white;
-  font-size: 0.95rem;
-  flex-shrink: 0;
-  user-select: none;
-}
-
-/* Responsive */
-@media (max-width: 800px) {
-  .section {
-    flex-direction: column;
-    padding: 50px 8%;
-  }
-
-  .section .image, .section .text {
-    min-width: 100%;
-  }
-
-  .cta {
-    padding: 50px 15px;
-  }
-
-  h2.community-header,
-  .community-text,
-  .community-link {
-    margin-left: 8%;
-    margin-right: 8%;
-  }
-
-  .hero h1 {
-    font-size: 2rem;
-  }
-  
-}
-
-/* Collapsible button */
-.collapsible {
-  background-color: #3498db;
-  color: white;
-  cursor: pointer;
-  padding: 12px 20px;
-  width: 100%;
-  border: none;
-  border-radius: 6px;
-  text-align: left;
-  font-size: 1.1rem;
-  transition: background 0.3s ease;
-  margin-top: 12px;
-}
-
-.collapsible:hover {
-  background-color: #217dbb;
-}
-
-/* Collapsible content */
-.content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease;
-  padding-left: 0;
-  margin-top: 0;
-}
-
-.content p {
-  padding: 10px 0;
-}
-</style>
 </head>
 
 <body>
@@ -267,6 +18,7 @@ footer {
 <nav class="navbar" role="navigation" aria-label="Main navigation">
   <h2>Save Late Start Wednesdays</h2>
   <div>
+    <a href="#sls">Save Late Start</a>
     <a href="#overview">Overview</a>
 	<a href="#issues">The Issue</a>
     <a href="#benefits">Benefits</a>
@@ -275,6 +27,17 @@ footer {
 	<a href="#articles">Featured Articles</a>
   </div>
 </nav>
+
+<!-- CTAs -->
+
+<section id="sls" class="cta" tabindex="-1">
+  <h2>Your Voice Matters</h2>
+  <p>Sign the petitions below to show that Late Start Wednesdays matter!</p>
+  <a href="https://c.org/HXhHZPqMLr" class="btn" target="_blank" rel="noopener noreferrer">Sign the LRSD Petition</a>
+  <a href="https://c.org/kJn2qbpXrY" class="btn" target="_blank" rel="noopener noreferrer">Sign the CJS Petition</a>
+  <a href="https://www.change.org/p/save-late-start-at-bruns" class="btn" target="_blank" rel="noopener noreferrer">Sign the JH Brun's Petition</a>
+  <a href="https://pad.riseup.net/p/Save-Late-Start" class="btn" target="_blank" rel="noopener noreferrer">Contribute to the forum</a>
+</section>
 
 <!-- Overview -->
 <section id="overview" class="section" tabindex="-1">
@@ -364,6 +127,9 @@ footer {
       "How am I supposed to focus on extracurricular courses I love that I have a passion for when I have demands shoved down my throat controlling the way I live my life! Who is an adult to tell me who I am? Are they in my head? In my voice? Forcing themselves into my curated opinions of what right and wrong are. Late start days are the only days in which I feel like me, where I have a moment to breath, the silence in the eye of a storm before everything comes crushing down on me once again."
     </blockquote>
   </div>
+  <div class="image">
+    <img src="images/hurricane.avif" alt="Massive hurricane" />
+  </div>
 </section>
 
 <!-- Featured Articles -->
@@ -439,18 +205,6 @@ footer {
   </div>
 </section>
 
-
-<!-- CTAs -->
-
-<section class="cta" tabindex="-1">
-  <h2>Your Voice Matters</h2>
-  <p>Sign the petitions below to show that Late Start Wednesdays matter!</p>
-  <a href="https://c.org/HXhHZPqMLr" class="btn" target="_blank" rel="noopener noreferrer">Sign the LRSD Petition</a>
-  <a href="https://c.org/kJn2qbpXrY" class="btn" target="_blank" rel="noopener noreferrer">Sign the CJS Petition</a>
-  <a href="https://www.change.org/p/save-late-start-at-bruns" class="btn" target="_blank" rel="noopener noreferrer">Sign the JH Brun's Petition</a>
-  
-  <a href="https://pad.riseup.net/p/Save-Late-Start" class="btn" target="_blank" rel="noopener noreferrer">Contribute to the forum</a>
-</section>
 
 <br>
 <!-- Community Contributions -->
