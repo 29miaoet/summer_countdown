@@ -28,14 +28,17 @@ jobs:
           node-version: '18'
 
       - name: Install dependencies
-        run: npm install --save-dev html-minifier terser cssnano postcss
+        run: npm install --save-dev html-minifier terser clean-css-cli
 
       - name: Create deployment directory
         run: mkdir -p dist
 
       - name: Copy and minify files
         run: |
-          # Define blacklisted files/patterns
+          #!/bin/bash
+          set -e
+          
+          # Blacklisted directories and files
           BLACKLIST=(
             "README.md"
             ".github"
@@ -43,12 +46,15 @@ jobs:
             "wordle"
             "math"
             "tkinter_calculator.py"
+            "node_modules"
+            ".git"
           )
           
-          # Function to check if file is blacklisted
+          # Function to check if file should be skipped
           is_blacklisted() {
             local file="$1"
             for pattern in "${BLACKLIST[@]}"; do
+              # Check if pattern matches anywhere in the path
               if [[ "$file" == *"$pattern"* ]]; then
                 return 0
               fi
@@ -63,19 +69,19 @@ jobs:
           
           # Function to minify CSS
           minify_css() {
-            npx cssnano "$1" > "$2"
+            npx cleancss -o "$2" "$1"
           }
           
           # Function to minify JavaScript
           minify_js() {
-            npx terser "$1" -o "$2"
+            npx terser "$1" --compress --mangle -o "$2"
           }
           
           # Process all files
-          find . -type f ! -path './dist/*' ! -path './.git/*' ! -path './node_modules/*' | while read file; do
+          while IFS= read -r -d '' file; do
             # Skip if blacklisted
             if is_blacklisted "$file"; then
-              echo "Skipping: $file"
+              echo "⊘ Skipping: $file"
               continue
             fi
             
@@ -86,25 +92,27 @@ jobs:
             # Minify based on file type
             case "$file" in
               *.html)
-                echo "Minifying HTML: $file"
-                minify_html "$file" "$dest_file"
+                echo "📄 Minifying HTML: $file"
+                minify_html "$file" "$dest_file" || cp "$file" "$dest_file"
                 ;;
               *.css)
-                echo "Minifying CSS: $file"
-                minify_css "$file" "$dest_file"
+                echo "🎨 Minifying CSS: $file"
+                minify_css "$file" "$dest_file" || cp "$file" "$dest_file"
                 ;;
               *.js)
-                if ! is_blacklisted "$file"; then
-                  echo "Minifying JS: $file"
-                  minify_js "$file" "$dest_file"
-                fi
+                echo "⚙️  Minifying JS: $file"
+                minify_js "$file" "$dest_file" || cp "$file" "$dest_file"
                 ;;
               *)
-                echo "Copying: $file"
+                echo "📦 Copying: $file"
                 cp "$file" "$dest_file"
                 ;;
             esac
-          done
+          done < <(find . -type f ! -path './dist/*' ! -path './.git/*' ! -path './node_modules/*' -print0)
+          
+          echo ""
+          echo "✅ Build complete!"
+          du -sh dist/
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -112,7 +120,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'dist'
+          path: dist
 
       - name: Deploy to GitHub Pages
         id: deployment
