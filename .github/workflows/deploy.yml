@@ -64,7 +64,7 @@ jobs:
           
           # Function to minify HTML
           minify_html() {
-            npx html-minifier --collapse-whitespace --remove-comments --remove-optional-tags "$1" > "$2"
+            npx html-minifier --collapse-whitespace --remove-comments "$1" > "$2"
           }
           
           # Function to minify CSS
