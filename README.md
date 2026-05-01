@@ -40,7 +40,7 @@ exploring the Fibonacci Sequence and prime and perfect numbers.
 
 ---
 - ***wordle***
- - moved to [29miaoet/wordle](https://github.com/29miaoet/wordle)
+  - moved to [29miaoet/wordle](https://github.com/29miaoet/wordle)
 ---
 - ***summer_countdown.html***
 
