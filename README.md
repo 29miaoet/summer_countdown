@@ -40,19 +40,7 @@ exploring the Fibonacci Sequence and prime and perfect numbers.
 
 ---
 - ***wordle***
-  - common_words.txt
-  - help.txt
-  - settings.ndjson
-  - wordle+.exe
-  - wordle+.py
-  - words_alpha.txt
-
-Description:  
-This project was created to mimic the popular NY Times game wordle, while 
-it does not have gui support, it has a fast and user-friendly CLI interface, 
-and advanced features including settings and word-validating. The .exe file is 
-a pre-packaged version for windows only, the other files are cross-platform.
-
+ - moved to [29miaoet/wordle](https://github.com/29miaoet/wordle)
 ---
 - ***summer_countdown.html***
 
